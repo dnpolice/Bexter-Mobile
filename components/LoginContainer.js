@@ -1,26 +1,23 @@
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Login from './Login';
-import LoginOverlay from './LoginOverlay';
-import Logo from './Logo';
+import LoginBackgroundOverlay from './LoginBackgroundOverlay';
+import LogoContainer from './LogoContainer';
 
-export default function App() {
+const LoginContainer = ({navigation}) => {
   return (
     <View style={styles.loginContainer}>
-        <LoginOverlay />
-        <View style={styles.logo}>
-            <Logo />
-            <Text style={styles.title}>Bexter</Text>
-            <Text style={styles.text}>Bex, the Exemplary Teaching</Text>
-            <Text style={styles.text}>and Engaging Robot</Text>
-        </View>
-        <Login />
+        <LoginBackgroundOverlay />
+        <LogoContainer />
+        <Login navigation={navigation}/>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   loginContainer: {
-    flex: 1,
+    display: 'flex',
+    height: '100%',
+    width: '100%',
     backgroundColor: '#5861B0',
     justifyContent: 'flex-end',
     alignItems: 'center',
@@ -41,3 +38,5 @@ const styles = StyleSheet.create({
     color: '#FEE0E0'
   }
 });
+
+export default LoginContainer

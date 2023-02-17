@@ -1,9 +1,12 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-const LoginButtons = () => {
+const LoginButtons = ({navigation}) => {
   return (
     <View style={styles.loginButtons}>
-        <Pressable style={styles.button}>
+        <Pressable 
+            style={styles.button}
+            onPress={() => navigation.navigate('Home')}
+        >
             <Text style={styles.buttonText}>Login</Text>
         </Pressable>
         <Text style={styles.text}>- or -</Text>

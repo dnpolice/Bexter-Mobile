@@ -2,12 +2,12 @@ import {StyleSheet, Text, View } from 'react-native';
 import LoginButtons from './LoginButtons';
 import LoginInput from './LoginInput';
 
-const Login = () => {
+const Login = ({navigation}) => {
   return (
     <View style={styles.login}>
         <Text style={styles.header}>Welcome Back!</Text>
         <LoginInput />
-        <LoginButtons />
+        <LoginButtons navigation={navigation}/>
     </View>
   );
 }

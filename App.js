@@ -1,16 +1,25 @@
-import { StyleSheet, View } from 'react-native';
 import LoginContainer from './components/LoginContainer';
+import HomeContainer from './components/HomeContainer';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-        <LoginContainer />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Login"
+          component={LoginContainer}
+          options={{ headerShown: false }}
+          />
+        <Stack.Screen
+          name="Home"
+          component={HomeContainer}
+          options={{ headerShown: false }}
+          />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
