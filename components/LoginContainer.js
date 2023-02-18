@@ -1,12 +1,12 @@
 import { StyleSheet, View } from 'react-native';
 import Login from './Login';
-import LoginBackgroundOverlay from './LoginBackgroundOverlay';
+import BackgroundOverlay from './BackgroundOverlay';
 import LogoContainer from './LogoContainer';
 
 const LoginContainer = ({navigation}) => {
   return (
     <View style={styles.loginContainer}>
-        <LoginBackgroundOverlay />
+        <BackgroundOverlay />
         <LogoContainer />
         <Login navigation={navigation}/>
     </View>

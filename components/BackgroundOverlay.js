@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '100%',
         transform: [{ rotate: '-45deg' }],
-        opacity: 0.5
+        opacity: 0.5,
+        top: 0
     }
 })
 
