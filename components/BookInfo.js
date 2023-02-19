@@ -1,21 +1,28 @@
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, Image, Pressable} from 'react-native';
+import BookInfoText from './BookInfoText';
 
-const BookInfo = ({navigation, title, author, keyLearningOutcomes}) => {
-    const keyLearningOutcomesString = keyLearningOutcomes.reduce((t, c, i) => {
-        if (i === 0) return c;
-        return `${t}, ${c}`;
-      }, "");
+const BookInfo= ({navigation, story}) => {
+    const title = story.title;
+    const author = story.author;
+    const description = story.description;
+    const keyLearningOutcomes = story.keyLearningOutcomes;
+    const uri = story.coverPhoto;
 
     return (
         <View style={styles.bookInfo}>
-            <View>
-                <Text style={styles.text}>{title}</Text>
-                <Text style={styles.text}>by {author}</Text>
-            </View>
-            <View>
-                <Text style={styles.text}>Learning Outcomes</Text>
-                <Text style={{...styles.keywords, ...styles.text}}>{keyLearningOutcomesString}</Text>
-            </View>
+            <Pressable 
+                style={styles.back}
+                onPress={() => navigation.navigate("Home")}
+            >
+                <Text style={styles.text}>Back</Text>
+            </Pressable>
+            <Text style={styles.header}>{title}</Text>
+            <Text style={styles.author}>by {author}</Text>
+            <Image source={{ uri: uri }} style={styles.img} />
+            <BookInfoText description={description} keyLearningOutcomes={keyLearningOutcomes} />
+            <Pressable style={styles.button}>
+                <Text style={styles.buttonText}>Play</Text>
+            </Pressable>
         </View>
     );
 }
@@ -23,20 +30,52 @@ const BookInfo = ({navigation, title, author, keyLearningOutcomes}) => {
 
 const styles = StyleSheet.create({
     bookInfo: {
-        display: 'flex',
+        position: 'relative',
         flexDirection: 'column',
-        justifyContent: 'space-evenly',
-        height: '100%',
-        alignItems: 'start',
-        width: 150,
-        heigh: 150
+        justifyContent: 'start',
+        alignItems: 'center',
+        height: '80%',
+        backgroundColor: 'white',
+        borderRadius: '50%',
+        width: '100%',
     },
-    keywords: {
-        color: '#FF9B83',
+    header: {
+        fontSize: 25,
+        marginTop: 40,
+        marginBottom: 5,
+    },
+    author: {
+        fontSize: 16,
+        marginBottom: 30,
+        color: '#A0A0A0'
+    },
+    img: {
+        height: 150,
+        width: 150,
+        borderRadius: '10%',
+        marginBottom: 30,
+    },
+    button: {
+        position: 'absolute',
+        bottom: 40,
+        backgroundColor: '#FF9B83',
+        width: '85%',
+        borderRadius: '50%',
+    },
+    buttonText: {
+        color: '#fff',
+        textAlign: 'center',
+        padding: 15,
+        fontSize: 20,
+    },
+    back: {
+        position: 'absolute',
+        top: 30,
+        left: 30,
     },
     text: {
-        fontSize: 16,
-        paddingVertical: 2
+        color: '#A0A0A0',
+        fontSize: 16
     }
 });
 

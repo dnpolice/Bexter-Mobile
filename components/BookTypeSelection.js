@@ -1,18 +1,27 @@
 import {StyleSheet, Text, View, Pressable} from 'react-native';
 
-const BookTypeSelection = ({navigation}) => {
-  return (
-    <View style={styles.bookTypeSelection}>
-        <Pressable style={styles.button}>
-            <Text style={styles.text}>All</Text>
-        </Pressable>
-        <Pressable style={styles.button}>
-            <Text style={styles.text}>Favourites</Text>
-        </Pressable>
-        <Pressable style={styles.button}>
-            <Text style={styles.text}>Previously Watched</Text>
-        </Pressable>
-    </View>
+const BookTypeSelection = ({bookType, setBookType}) => {
+    return (
+        <View style={styles.bookTypeSelection}>
+            <Pressable 
+                style={bookType === "All" ? { ...styles.button, ...styles.selectedButton} : styles.button}
+                onPress={() => setBookType("All")}
+            >
+                <Text style={styles.text}>All</Text>
+            </Pressable>
+            <Pressable
+                style={bookType === "Favourites" ? { ...styles.button, ...styles.selectedButton} : styles.button}
+                onPress={() => setBookType("Favourites")}
+            >
+                <Text style={styles.text}>Favourites</Text>
+            </Pressable>
+            <Pressable
+                style={bookType === "Previously Watched" ? { ...styles.button, ...styles.selectedButton} : styles.button}
+                onPress={() => setBookType("Previously Watched")}
+            >
+                <Text style={styles.text}>Previously Watched</Text>
+            </Pressable>
+        </View>
   );
 }
 
@@ -35,7 +44,9 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 12,
-        // color: '#858585',
+    },
+    selectedButton: {
+        backgroundColor: '#FF9B83'
     }
 });
 

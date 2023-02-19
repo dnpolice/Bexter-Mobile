@@ -4,9 +4,8 @@ import Book from './Book';
 const Books = ({navigation, stories}) => {
   return (
     <ScrollView style={styles.books}>
-      {stories.length > 0 && <Book story={stories[0]} />}
       {stories.length > 0 && stories.map((story, i) => (
-        <Book key={i} story={story} />
+        <Book key={i} story={story} navigation={navigation} />
       ))}
     </ScrollView>
   );

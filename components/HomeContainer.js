@@ -10,7 +10,18 @@ const favouritesUrl = base_url + 'stories/favourites';
 const previouslyWatchedUrl = base_url + 'stories/previouslyWatched';
 
 const HomeContainer = ({navigation}) => {
-  const allStories = fetchAllStories();
+  const [allStories, favourites, previouslyWatched] = fetchStories();
+  const [bookType, setBookType] = useState("All");
+
+  console.log('navigation', navigation)
+  
+  let stories = allStories;
+  if (bookType == "Favourites") {
+    stories = favourites;
+  } else if (bookType == "Previously Watched") {
+    stories = previouslyWatched;
+  }
+
   return (
     <View style={styles.homeContainer}>
       <BackgroundOverlay />
@@ -18,13 +29,16 @@ const HomeContainer = ({navigation}) => {
             style={styles.input}
             placeholder="Search"
         />
-        <Home stories={allStories}/>
+        <Home navigation={navigation} stories={stories} setBookType={setBookType} bookType={bookType}/>
     </View>
   );
 }
 
-const fetchAllStories = () => {
+const fetchStories = () => {
   const [allStories, setAllStories] = useState([]);
+  const [favourites, setFavourites] = useState([]);
+  const [previouslyWatched, setPreviouslyWatched] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       const [allStoriesResponse, favouritesResponse, previouslyWatchedResponse] = await Promise.all([
@@ -50,17 +64,20 @@ const fetchAllStories = () => {
         favouritesResponse.json(),
         previouslyWatchedResponse.json()
       ]);
-      
-      console.log(allStories);
-      console.log(favourites);
-      console.log(previouslyWatched);
+
+      console.log(allStories)
+      console.log(favourites)
+      console.log(previouslyWatched)
 
       setAllStories(allStories);
+      setFavourites(favourites);
+      setPreviouslyWatched(previouslyWatched);
     }
+
     fetchData();
   }, []);
 
-  return allStories;
+  return [allStories, favourites, previouslyWatched];
 }
 
 
@@ -73,6 +90,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         backgroundColor: '#5861B0',
+        overflow: 'hidden',
     },
     text: {
         fontSize: 30,

@@ -2,12 +2,12 @@ import {StyleSheet, Text, View } from 'react-native';
 import BookTypeSelection from './BookTypeSelection.js';
 import Books from './Books';
 
-const Home = ({navigation, stories}) => {
+const Home = ({navigation, stories, setBookType, bookType}) => {
   return (
     <View style={styles.home}>
       <Text style={styles.text}>Books for Tim</Text>
-      <BookTypeSelection />
-      <Books stories={stories}/>
+      <BookTypeSelection setBookType={setBookType} bookType={bookType}/>
+      <Books stories={stories} navigation={navigation}/>
     </View>
   );
 }

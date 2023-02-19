@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#5861B0',
     justifyContent: 'flex-end',
     alignItems: 'center',
+    overflow: 'hidden',
   },
   logo: {
     display: 'flex',
