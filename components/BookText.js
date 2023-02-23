@@ -13,7 +13,7 @@ const BookText = ({title, author, keyLearningOutcomes}) => {
                 <FavouriteIcon />
             </Pressable>
             <View style={styles.textGroup}>
-                <Text style={styles.text}>{title}</Text>
+                <Text style={styles.title}>{title}</Text>
                 <Text style={styles.text}>by {author}</Text>
             </View>
             <View style={styles.textGroup}>
@@ -30,16 +30,20 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        height: '100%',
-        alignItems: 'start',
-        width: 150,
-        heigh: 150
+        paddingLeft: 22,
+        paddingRight: 18,
+        width: 215,
+        height: 150
     },
     keywords: {
         color: '#FF9B83',
     },
+    title:{
+        fontSize: 17,
+        paddingVertical: 2
+    },
     text: {
-        fontSize: 16,
+        fontSize: 15,
         paddingVertical: 2
     },
     favouriteIcon: {
@@ -48,7 +52,7 @@ const styles = StyleSheet.create({
         right: 0,
     },
     textGroup: {
-        paddingVertical: 10,
+        paddingBottom: 10,
     }
 });
 

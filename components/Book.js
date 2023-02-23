@@ -21,18 +21,16 @@ const Book = ({navigation, story}) => {
 
 const styles = StyleSheet.create({
     book: {
-        display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
         height: 150,
         marginBottom: 20,
-        marginHorizontal: '5%'
+        marginHorizontal: 5,
+        padding: 20
     },
     img: {
         width: 150,
         height: 150,
-        borderRadius: '10%'
+        borderRadius: 20
     }
 });
 

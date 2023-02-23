@@ -28,22 +28,19 @@ const BookTypeSelection = ({bookType, setBookType}) => {
 
 const styles = StyleSheet.create({
     bookTypeSelection: {
-       display: 'flex',
        flexDirection: 'row',
        justifyContent: 'space-between',
-       alignItems: 'center',
-       width: '100%',
-       paddingHorizontal: '5%',
-       marginBottom: 20
+       paddingHorizontal: 15,
+       marginBottom: 25
     },
     button: {
         backgroundColor: '#FFEBD2',
-        paddingVertical: 10,
+        paddingVertical: 5,
         paddingHorizontal: 20,
-        borderRadius: '15%'
+        borderRadius: 15
     },
     text: {
-        fontSize: 12,
+        fontSize: 16,
     },
     selectedButton: {
         backgroundColor: '#FF9B83'

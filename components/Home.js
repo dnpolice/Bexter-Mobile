@@ -15,19 +15,17 @@ const Home = ({navigation, stories, setBookType, bookType}) => {
 
 const styles = StyleSheet.create({
     home: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'start',
-      alignItems: 'center',
-      height: '80%',
-      backgroundColor: 'white',
-      borderRadius: '50%',
-      width: '100%',
+      height: 765,
+      backgroundColor: '#fff',
+      borderTopLeftRadius: 40,
+      borderTopRightRadius: 40,
+      transform: [
+        { translateY: 100 },
+    ],
     },
     text: {
       fontSize: 30,
-      width: '100%',
-      paddingLeft: '5%',
+      paddingLeft:20,
       marginTop: 40,
       marginBottom: 20,
     }

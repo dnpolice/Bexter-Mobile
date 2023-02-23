@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     bookInfoContainer: {
         flex: 1,
         backgroundColor: '#5861B0',
-        flexDirection: "column",
+        flexDirection: 'column',
         justifyContent: 'flex-end',
         overflow: 'hidden',
     }
