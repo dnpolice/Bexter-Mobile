@@ -2,7 +2,7 @@ import {StyleSheet, Text, View } from 'react-native';
 import BookTypeSelection from './BookTypeSelection.js';
 import Books from './Books';
 
-const Home = ({navigation, stories, setBookType, bookType}) => {
+const Home = ({navigation, stories, setBookType, bookType, userName}) => {
   return (
     <View style={styles.home}>
       <Text style={styles.text}>Books for Tim</Text>
@@ -21,7 +21,8 @@ const styles = StyleSheet.create({
       borderTopRightRadius: 40,
       transform: [
         { translateY: 100 },
-    ],
+      ],
+      paddingBottom:120
     },
     text: {
       fontSize: 30,

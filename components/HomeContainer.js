@@ -9,7 +9,11 @@ const allStoriesUrl = base_url + "stories/all";
 const favouritesUrl = base_url + 'stories/favourites';
 const previouslyWatchedUrl = base_url + 'stories/previouslyWatched';
 
-const HomeContainer = ({navigation}) => {
+const HomeContainer = ({navigation, route}) => {
+  // const { userName } = route.params;
+  // console.log(userName);
+  // need to persist
+  
   const [allStories, favourites, previouslyWatched] = fetchStories();
   const [bookType, setBookType] = useState("All");
 
@@ -30,6 +34,7 @@ const HomeContainer = ({navigation}) => {
             placeholder="Search"
         />
         <Home navigation={navigation} stories={stories} setBookType={setBookType} bookType={bookType}/>
+        {/* <Home navigation={navigation} stories={stories} setBookType={setBookType} bookType={bookType} userName={userName}/> */}
     </View>
   );
 }
