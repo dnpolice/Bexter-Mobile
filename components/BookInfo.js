@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     },
     header: {
         fontSize: 25,
-        marginTop: 40,
+        marginTop: 60,
         marginBottom: 5,
     },
     author: {

@@ -9,8 +9,8 @@ const BookInfoText = ({navigation, description, keyLearningOutcomes}) => {
     return (
         <View style={styles.bookInfoText}>
             <Text style={styles.text}>{description}</Text>
-            <Text style={{...styles.text, ...styles.textGroup}}>Key Learning Outcomes</Text>
-            <Text style={styles.text}>{keyLearningOutcomesString}</Text>
+            <Text style={{...styles.text, ...styles.textGroup}}>Key Learning Outcomes:</Text>
+            <Text style={styles.text }>{keyLearningOutcomesString}</Text>
         </View>
     );
 }

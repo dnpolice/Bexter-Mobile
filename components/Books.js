@@ -1,11 +1,11 @@
 import {StyleSheet, Text, ScrollView } from 'react-native';
 import Book from './Book';
 
-const Books = ({navigation, stories}) => {
+const Books = ({navigation, stories, setStoryAsFavourite}) => {
   return (
     <ScrollView style={styles.books}>
       {stories.length > 0 && stories.map((story, i) => (
-        <Book key={i} story={story} navigation={navigation} />
+        <Book key={i} story={story} navigation={navigation} setStoryAsFavourite={setStoryAsFavourite}/>
       ))}
     </ScrollView>
   );

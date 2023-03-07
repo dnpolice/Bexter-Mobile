@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View, TextInput} from 'react-native';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import BackgroundOverlay from './BackgroundOverlay';
 import Home from './Home';
 
@@ -7,20 +7,39 @@ const base_url = "http://3.134.99.13:5000/";
 // const base_url = "http://localhost:5000/";
 const allStoriesUrl = base_url + "stories/all";
 const favouritesUrl = base_url + 'stories/favourites';
+const favouriteUrl = base_url + 'stories/favourite';
+const unfavouriteUrl = base_url + 'stories/unfavourite'
 const previouslyWatchedUrl = base_url + 'stories/previouslyWatched';
 
 const HomeContainer = ({navigation}) => {
-  const [allStories, favourites, previouslyWatched] = fetchStories();
+  const [allStories, setAllStories] = fetchStories();
   const [bookType, setBookType] = useState("All");
 
-  console.log('navigation', navigation)
-  
-  let stories = allStories;
-  if (bookType == "Favourites") {
-    stories = favourites;
-  } else if (bookType == "Previously Watched") {
-    stories = previouslyWatched;
+  const setStoryAsFavourite = (id, favourited) => {
+    favouriteStoryPost(id, favourited);
+    setAllStories(prevStories => {
+      return prevStories.map(story => {
+        if (story.id == id) {
+          return {
+            ...story,
+            favourite: favourited ? false : true
+          }
+        } else {
+          return story;
+        }
+      });
+    });
   }
+  
+  const filteredStories = useMemo(() => {
+    let stories = allStories;
+    if (bookType == "Favourites") {
+      stories = stories.filter(story => story.favourite == true);
+    } else if (bookType == "Previously Watched") {
+      stories = stories.filter(story => story.previouslyWatched == true);
+    }
+    return stories
+}, [allStories, bookType])
 
   return (
     <View style={styles.homeContainer}>
@@ -29,15 +48,39 @@ const HomeContainer = ({navigation}) => {
             style={styles.input}
             placeholder="Search"
         />
-        <Home navigation={navigation} stories={stories} setBookType={setBookType} bookType={bookType}/>
+        <Home navigation={navigation} stories={filteredStories} setBookType={setBookType} bookType={bookType} setStoryAsFavourite={setStoryAsFavourite}/>
     </View>
   );
 }
 
+const favouriteStoryPost = async (id, favourited) => {
+  if (favourited) {
+    fetch(unfavouriteUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Cookie': 'saveUser=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvbWVlbWFpbEBlbWFpbC5jb20iLCJwYXNzd29yZCI6InNvbWVwYXNzZCIsImlhdCI6MTY3NjY1NzU3Mn0.Z8caQcxGaMitzea4wgDgnhZasjUq8aRkYgAnZ5ysUP4'
+      },
+      body: JSON.stringify({
+        'storyId': id
+      })
+    });
+  } else {
+    fetch(favouriteUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Cookie': 'saveUser=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvbWVlbWFpbEBlbWFpbC5jb20iLCJwYXNzd29yZCI6InNvbWVwYXNzZCIsImlhdCI6MTY3NjY1NzU3Mn0.Z8caQcxGaMitzea4wgDgnhZasjUq8aRkYgAnZ5ysUP4'
+      },
+      body: JSON.stringify({
+        'storyId': id
+      })
+    })
+  }
+}
+
 const fetchStories = () => {
   const [allStories, setAllStories] = useState([]);
-  const [favourites, setFavourites] = useState([]);
-  const [previouslyWatched, setPreviouslyWatched] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -65,19 +108,32 @@ const fetchStories = () => {
         previouslyWatchedResponse.json()
       ]);
 
+      const favouritedStories = {};
+      const previouslyWatchedStories = {};
+      for (let i = 0; i < favourites.length; i++) {
+        favouritedStories[favourites[i].id] = favourites[i].id
+      }
+
+      for (let i = 0; i < previouslyWatched.length; i++) {
+        previouslyWatchedStories[previouslyWatched[i].id] = previouslyWatched[i].id
+      }
+
+      for (let i = 0; i < allStories.length; i++) {
+        if (allStories[i].id in favouritedStories) allStories[i]["favourite"] = true
+        if (allStories[i].id in previouslyWatchedStories) allStories[i]["previouslyWatched"] = true
+      }
+
       console.log(allStories)
       console.log(favourites)
       console.log(previouslyWatched)
 
       setAllStories(allStories);
-      setFavourites(favourites);
-      setPreviouslyWatched(previouslyWatched);
     }
 
     fetchData();
   }, []);
 
-  return [allStories, favourites, previouslyWatched];
+  return [allStories, setAllStories];
 }
 
 

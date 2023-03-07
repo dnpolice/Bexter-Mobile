@@ -1,24 +1,32 @@
 import {StyleSheet, View, Text, Pressable} from 'react-native';
+import {useState} from 'react';
 import FavouriteIcon from './FavouriteIcon';
 
-const BookText = ({title, author, keyLearningOutcomes}) => {
+const BookText = ({id, title, author, keyLearningOutcomes, favourited, setStoryAsFavourite}) => {
     const keyLearningOutcomesString = keyLearningOutcomes.reduce((t, c, i) => {
         if (i === 0) return c;
         return `${t}, ${c}`;
       }, "");
 
+    let favouritedFill = "none";
+    if (favourited) {
+        favouritedFill = "#FFEBD2";
+    }
     return (
         <View style={styles.bookText}>
-            <Pressable style={styles.favouriteIcon}>
-                <FavouriteIcon />
+            <Pressable
+            style={styles.favouriteIcon}
+            onPress={() => setStoryAsFavourite(id, favourited)}
+            >
+                <FavouriteIcon fill={favouritedFill}/>
             </Pressable>
             <View style={styles.textGroup}>
-                <Text style={styles.text}>{title}</Text>
-                <Text style={styles.text}>by {author}</Text>
+                <Text style={{...styles.text, ...styles.header}}>{title}</Text>
+                <Text style={{...styles.text}}>by {author}</Text>
             </View>
             <View style={styles.textGroup}>
-                <Text style={styles.text}>Learning Outcomes</Text>
-                <Text style={{...styles.keywords, ...styles.text}}>{keyLearningOutcomesString}</Text>
+                <Text style={styles.text}>Learning Outcomes:</Text>
+                <Text style={{...styles.text, ...styles.subText}}>{keyLearningOutcomesString}</Text>
             </View>
         </View>
     );
@@ -27,15 +35,19 @@ const BookText = ({title, author, keyLearningOutcomes}) => {
 
 const styles = StyleSheet.create({
     bookText: {
+        flex: 1,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        height: '100%',
-        alignItems: 'start',
-        width: 150,
-        heigh: 150
+        height: 175,
+        paddingLeft: 10,
+        paddingTop: 15,
+        paddingBottom: 15,
     },
-    keywords: {
+    header: {
+        marginRight: 25,
+    },
+    subText: {
         color: '#FF9B83',
     },
     text: {
@@ -46,10 +58,8 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 5,
         right: 0,
+        zIndex: 1,
     },
-    textGroup: {
-        paddingVertical: 10,
-    }
 });
 
 export default BookText
