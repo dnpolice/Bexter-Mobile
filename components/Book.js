@@ -23,18 +23,18 @@ const Book = ({navigation, story, setStoryAsFavourite}) => {
 
 const styles = StyleSheet.create({
     book: {
-        display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         height: 175,
         marginBottom: 20,
-        marginHorizontal: '5%'
+        marginHorizontal: 5,
+        padding: 20
     },
     img: {
         width: 175,
         height: 175,
-        borderRadius: '10%'
+        borderRadius: 20
     }
 });
 

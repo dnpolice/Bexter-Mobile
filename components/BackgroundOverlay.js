@@ -13,10 +13,9 @@ const BackgroundOverlay = ({navigation}) => {
 const styles = StyleSheet.create({
     backgroundOverlay: {
         position: 'absolute',
-        height: '100%',
-        width: '100%',
         transform: [
-            { rotate: '-45deg' },
+            { rotate: '-30deg' },
+            { translateY: -100 },
         ],
         opacity: 0.5,
         top: 0,

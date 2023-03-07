@@ -32,12 +32,13 @@ const styles = StyleSheet.create({
     bookInfo: {
         position: 'relative',
         flexDirection: 'column',
-        justifyContent: 'start',
         alignItems: 'center',
         height: '80%',
         backgroundColor: 'white',
-        borderRadius: '50%',
+        borderTopLeftRadius: 50,
+        borderTopRightRadius: 50,
         width: '100%',
+        paddingTop: 20, 
     },
     header: {
         fontSize: 25,
@@ -47,12 +48,11 @@ const styles = StyleSheet.create({
     author: {
         fontSize: 16,
         marginBottom: 30,
-        color: '#A0A0A0'
     },
     img: {
         height: 150,
         width: 150,
-        borderRadius: '10%',
+        borderRadius: 10,
         marginBottom: 30,
     },
     button: {
@@ -60,10 +60,9 @@ const styles = StyleSheet.create({
         bottom: 40,
         backgroundColor: '#FF9B83',
         width: '85%',
-        borderRadius: '50%',
+        borderRadius: 50,
     },
     buttonText: {
-        color: '#fff',
         textAlign: 'center',
         padding: 15,
         fontSize: 20,
@@ -72,10 +71,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 30,
         left: 30,
-    },
-    text: {
-        color: '#A0A0A0',
-        fontSize: 16
     }
 });
 

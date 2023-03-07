@@ -12,6 +12,10 @@ const unfavouriteUrl = base_url + 'stories/unfavourite'
 const previouslyWatchedUrl = base_url + 'stories/previouslyWatched';
 
 const HomeContainer = ({navigation}) => {
+  // const { userName } = route.params;
+  // console.log(userName);
+  // need to persist
+
   const [allStories, setAllStories] = fetchStories();
   const [bookType, setBookType] = useState("All");
 
@@ -143,7 +147,6 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '100%',
         flexDirection: 'column',
-        alignItems: 'center',
         justifyContent: 'space-between',
         backgroundColor: '#5861B0',
         overflow: 'hidden',
@@ -152,16 +155,17 @@ const styles = StyleSheet.create({
         fontSize: 30,
     },
     input: {
-      display: 'block',
       backgroundColor: '#fff',
       padding: 10,
       paddingLeft: 20,
-      width: '85%',
       borderWidth: 1,
       borderStyle: 'solid',
       borderColor: '#D9D9D9',
-      borderRadius: '50%',
-      top: '10%'
+      borderRadius: 100,
+      top: '10%', 
+      margin: 10,
+      marginLeft:20, 
+      marginRight: 20
     },
     
 });

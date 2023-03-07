@@ -50,8 +50,12 @@ const styles = StyleSheet.create({
     subText: {
         color: '#FF9B83',
     },
+    title:{
+        fontSize: 17,
+        paddingVertical: 2
+    },
     text: {
-        fontSize: 16,
+        fontSize: 15,
         paddingVertical: 2
     },
     favouriteIcon: {
@@ -60,6 +64,12 @@ const styles = StyleSheet.create({
         right: 0,
         zIndex: 1,
     },
+<<<<<<< HEAD
+=======
+    textGroup: {
+        paddingBottom: 10,
+    }
+>>>>>>> refs/remotes/origin/master
 });
 
 export default BookText

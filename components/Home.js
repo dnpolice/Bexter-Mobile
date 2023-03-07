@@ -2,7 +2,11 @@ import {StyleSheet, Text, View } from 'react-native';
 import BookTypeSelection from './BookTypeSelection.js';
 import Books from './Books';
 
-const Home = ({navigation, stories, setBookType, bookType, setStoryAsFavourite}) => {
+<<<<<<< HEAD
+const Home = ({navigation, stories, setBookType, bookType, setStoryAsFavourite, userName}) => {
+=======
+const Home = ({navigation, stories, setBookType, bookType, userName}) => {
+>>>>>>> refs/remotes/origin/master
   return (
     <View style={styles.home}>
       <Text style={styles.text}>Books for Tim</Text>
@@ -15,19 +19,18 @@ const Home = ({navigation, stories, setBookType, bookType, setStoryAsFavourite})
 
 const styles = StyleSheet.create({
     home: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'start',
-      alignItems: 'center',
-      height: '80%',
-      backgroundColor: 'white',
-      borderRadius: '50%',
-      width: '100%',
+      height: 765,
+      backgroundColor: '#fff',
+      borderTopLeftRadius: 40,
+      borderTopRightRadius: 40,
+      transform: [
+        { translateY: 100 },
+      ],
+      paddingBottom:120
     },
     text: {
       fontSize: 30,
-      width: '100%',
-      paddingLeft: '5%',
+      paddingLeft:20,
       marginTop: 40,
       marginBottom: 20,
     }
