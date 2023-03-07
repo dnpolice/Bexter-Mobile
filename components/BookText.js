@@ -64,12 +64,9 @@ const styles = StyleSheet.create({
         right: 0,
         zIndex: 1,
     },
-<<<<<<< HEAD
-=======
     textGroup: {
         paddingBottom: 10,
     }
->>>>>>> refs/remotes/origin/master
 });
 
 export default BookText

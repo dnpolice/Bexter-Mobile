@@ -2,11 +2,7 @@ import {StyleSheet, Text, View } from 'react-native';
 import BookTypeSelection from './BookTypeSelection.js';
 import Books from './Books';
 
-<<<<<<< HEAD
 const Home = ({navigation, stories, setBookType, bookType, setStoryAsFavourite, userName}) => {
-=======
-const Home = ({navigation, stories, setBookType, bookType, userName}) => {
->>>>>>> refs/remotes/origin/master
   return (
     <View style={styles.home}>
       <Text style={styles.text}>Books for Tim</Text>
