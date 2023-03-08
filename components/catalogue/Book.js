@@ -2,21 +2,29 @@ import {StyleSheet, View, Image, Pressable } from 'react-native';
 import BookText from './BookText';
 
 const Book = ({navigation, story, setStoryAsFavourite}) => {
-    const id = story.id;
-    const title = story.title;
-    const author = story.author;
-    const keyLearningOutcomes = story.keyLearningOutcomes;
-    const uri = story.coverPhoto;
-    const favourited = story.favourite
+    const {
+        id,
+        title,
+        author,
+        keyLearningOutcomes,
+        coverPhoto: uri,
+        favourite: favourited
+    } = story;
 
     return (
         <Pressable onPress={() => navigation.navigate('BookInfoContainer', {story})}> 
             <View style={styles.book}>
                 <Image source={{ uri: uri }} style={styles.img} />
-                <BookText key={id} id={id} title={title} author={author} keyLearningOutcomes={keyLearningOutcomes} favourited={favourited} setStoryAsFavourite={setStoryAsFavourite}/>
+                <BookText
+                    key={id}
+                    id={id}
+                    title={title}
+                    author={author}
+                    keyLearningOutcomes={keyLearningOutcomes}
+                    favourited={favourited}
+                    setStoryAsFavourite={setStoryAsFavourite}/>
             </View>
         </Pressable>
-        
   );
 }
 

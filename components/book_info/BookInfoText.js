@@ -1,6 +1,6 @@
 import {StyleSheet, View, Text, Image} from 'react-native';
 
-const BookInfoText = ({navigation, description, keyLearningOutcomes}) => {
+const BookInfoText = ({description, keyLearningOutcomes}) => {
     const keyLearningOutcomesString = keyLearningOutcomes.reduce((t, c, i) => {
         if (i === 0) return c;
         return `${t}, ${c}`;

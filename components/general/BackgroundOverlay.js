@@ -1,5 +1,5 @@
 import { View, StyleSheet } from 'react-native';
-import LoginPattern from './LoginPattern.js'
+import LoginPattern from '../LoginPattern.js'
 
 
 const BackgroundOverlay = ({navigation}) => {

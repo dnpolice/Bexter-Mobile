@@ -5,7 +5,11 @@ const Books = ({navigation, stories, setStoryAsFavourite}) => {
   return (
     <ScrollView style={styles.books}>
       {stories.length > 0 && stories.map((story, i) => (
-        <Book key={i} story={story} navigation={navigation} setStoryAsFavourite={setStoryAsFavourite}/>
+        <Book
+          key={i}
+          story={story}
+          navigation={navigation}
+          setStoryAsFavourite={setStoryAsFavourite}/>
       ))}
     </ScrollView>
   );

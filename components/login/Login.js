@@ -4,7 +4,7 @@ import LoginInput from './LoginInput';
 import {useState, useEffect} from 'react';
 
 const base_url = "http://3.134.99.13:5000/";
-const favouritesUrl = base_url + 'auth/login';
+const loginUrl = base_url + 'auth/login';
 
 const Login = ({navigation}) => {
   const [isLoginPressed, setIsLoginPressed] = useState(false);
@@ -15,7 +15,7 @@ const Login = ({navigation}) => {
   if (isLoginPressed) {
     const loginUser = async () => {
       const login = () => {
-        return fetch(favouritesUrl, {
+        return fetch(loginUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -47,6 +47,13 @@ const Login = ({navigation}) => {
           ]);
           // then maybe clear the input fields
         }
+      }).catch(e => {
+        setIsLoginPressed(false);
+        Alert.alert('Login Error', 'Server error', [
+          {
+            text: 'OK',
+          }
+        ]);
       });
     }
     loginUser()

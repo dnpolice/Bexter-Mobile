@@ -1,6 +1,6 @@
 import {StyleSheet, Text, View, TextInput} from 'react-native';
 import React, { useState, useEffect, useMemo } from 'react';
-import BackgroundOverlay from './BackgroundOverlay';
+import BackgroundOverlay from './general/BackgroundOverlay';
 import Home from './Home';
 
 const base_url = "http://3.134.99.13:5000/";
@@ -52,14 +52,19 @@ const HomeContainer = ({navigation}) => {
             style={styles.input}
             placeholder="Search"
         />
-        <Home navigation={navigation} stories={filteredStories} setBookType={setBookType} bookType={bookType} setStoryAsFavourite={setStoryAsFavourite}/>
+        <Home
+          navigation={navigation}
+          stories={filteredStories}
+          setBookType={setBookType}
+          bookType={bookType}
+          setStoryAsFavourite={setStoryAsFavourite}/>
     </View>
   );
 }
 
 const favouriteStoryPost = async (id, favourited) => {
-  if (favourited) {
-    fetch(unfavouriteUrl, {
+  const url = favourited ? unfavouriteUrl : favouriteUrl;
+    fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -69,19 +74,23 @@ const favouriteStoryPost = async (id, favourited) => {
         'storyId': id
       })
     });
-  } else {
-    fetch(favouriteUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Cookie': 'saveUser=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvbWVlbWFpbEBlbWFpbC5jb20iLCJwYXNzd29yZCI6InNvbWVwYXNzZCIsImlhdCI6MTY3NjY1NzU3Mn0.Z8caQcxGaMitzea4wgDgnhZasjUq8aRkYgAnZ5ysUP4'
-      },
-      body: JSON.stringify({
-        'storyId': id
-      })
-    })
-  }
 }
+
+// const fetchStories = () => {
+//   const [allStories, setAllStories] = useState([]);
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       const allStoriesResponse = await fetch(allStoriesUrl);
+//       const allStories = await allStoriesResponse.json();
+    
+//       setAllStories(allStories);
+//     }
+//     fetchData()
+
+//   return [allStories, setAllStories];
+// }
+
 
 const fetchStories = () => {
   const [allStories, setAllStories] = useState([]);
