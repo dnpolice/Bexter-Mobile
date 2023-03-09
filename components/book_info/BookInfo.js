@@ -2,11 +2,7 @@ import {StyleSheet, View, Text, Image, Pressable} from 'react-native';
 import BookInfoText from './BookInfoText';
 
 const BookInfo= ({navigation, story}) => {
-    const title = story.title;
-    const author = story.author;
-    const description = story.description;
-    const keyLearningOutcomes = story.keyLearningOutcomes;
-    const uri = story.coverPhoto;
+    const {title, author, description, keyLearningOutcomes, coverPhoto: uri} = story;
 
     return (
         <View style={styles.bookInfo}>

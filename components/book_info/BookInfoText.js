@@ -1,4 +1,4 @@
-import {StyleSheet, View, Text, Image} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 
 const BookInfoText = ({description, keyLearningOutcomes}) => {
     const keyLearningOutcomesString = keyLearningOutcomes.reduce((t, c, i) => {

@@ -1,5 +1,5 @@
 import {StyleSheet, View, Text} from 'react-native';
-import BackgroundOverlay from './BackgroundOverlay';
+import BackgroundOverlay from '../general/BackgroundOverlay';
 import BookInfo from './BookInfo';
 
 const BookInfoContainer = ({navigation, route}) => {

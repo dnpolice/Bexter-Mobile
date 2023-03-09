@@ -1,6 +1,5 @@
 import {StyleSheet, View, Text, Pressable} from 'react-native';
-import {useState} from 'react';
-import FavouriteIcon from './FavouriteIcon';
+import FavouriteIcon from '../general/FavouriteIcon';
 
 const BookText = ({id, title, author, keyLearningOutcomes, favourited, setStoryAsFavourite}) => {
     const keyLearningOutcomesString = keyLearningOutcomes.reduce((t, c, i) => {

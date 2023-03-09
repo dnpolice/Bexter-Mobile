@@ -1,6 +1,6 @@
-import LoginContainer from './components/LoginContainer';
-import HomeContainer from './components/HomeContainer';
-import BookInfoContainer from './components/BookInfoContainer'
+import LoginContainer from './components/login/LoginContainer';
+import CatalogueContainer from './components/catalogue/CatalogueContainer';
+import BookInfoContainer from './components/book_info/BookInfoContainer';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -17,7 +17,7 @@ export default function App() {
         />
         <Stack.Screen
           name="Home"
-          component={HomeContainer}
+          component={CatalogueContainer}
           options={{ headerShown: false }}
         />
         <Stack.Screen

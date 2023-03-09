@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 import Login from './Login';
-import BackgroundOverlay from './BackgroundOverlay';
-import LogoContainer from './LogoContainer';
+import BackgroundOverlay from '../general/BackgroundOverlay';
+import LogoContainer from '../general/LogoContainer';
 
 const LoginContainer = ({navigation}) => {
   return (

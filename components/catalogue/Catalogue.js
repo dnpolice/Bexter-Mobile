@@ -2,7 +2,7 @@ import {StyleSheet, Text, View } from 'react-native';
 import BookTypeSelection from './BookTypeSelection.js';
 import Books from './Books';
 
-const Home = ({
+const Catalogue = ({
   navigation,
   stories,
   setBookType,
@@ -41,4 +41,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Home
+export default Catalogue

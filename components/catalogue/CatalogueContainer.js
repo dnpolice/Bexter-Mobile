@@ -1,10 +1,10 @@
-import {StyleSheet, Text, View, TextInput} from 'react-native';
+import {StyleSheet, View, TextInput} from 'react-native';
 import React, { useState, useEffect, useMemo } from 'react';
-import BackgroundOverlay from './general/BackgroundOverlay';
-import Home from './Home';
+import BackgroundOverlay from '../general/BackgroundOverlay';
+import Catalogue from './Catalogue';
 
-const base_url = "http://3.134.99.13:5000/";
-// const base_url = "http://localhost:5000/";
+// const base_url = "http://3.134.99.13:5000/";
+const base_url = "http://localhost:5000/";
 const allStoriesUrl = base_url + "stories/all";
 const favouritesUrl = base_url + 'stories/favourites';
 const favouriteUrl = base_url + 'stories/favourite';
@@ -52,7 +52,7 @@ const HomeContainer = ({navigation}) => {
             style={styles.input}
             placeholder="Search"
         />
-        <Home
+        <Catalogue
           navigation={navigation}
           stories={filteredStories}
           setBookType={setBookType}
@@ -75,22 +75,6 @@ const favouriteStoryPost = async (id, favourited) => {
       })
     });
 }
-
-// const fetchStories = () => {
-//   const [allStories, setAllStories] = useState([]);
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       const allStoriesResponse = await fetch(allStoriesUrl);
-//       const allStories = await allStoriesResponse.json();
-    
-//       setAllStories(allStories);
-//     }
-//     fetchData()
-
-//   return [allStories, setAllStories];
-// }
-
 
 const fetchStories = () => {
   const [allStories, setAllStories] = useState([]);
