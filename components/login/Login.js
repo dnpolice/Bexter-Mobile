@@ -3,8 +3,8 @@ import LoginButtons from './LoginButtons';
 import LoginInput from './LoginInput';
 import {useState} from 'react';
 
-// const base_url = "http://3.134.99.13:5000/";
-const base_url = "http://localhost:5000/";
+const base_url = "http://3.134.99.13:5000/";
+// const base_url = "http://localhost:5000/";
 const loginUrl = base_url + 'auth/login';
 
 const Login = ({navigation}) => {

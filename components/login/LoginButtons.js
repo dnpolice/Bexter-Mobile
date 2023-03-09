@@ -1,18 +1,22 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 const LoginButtons = props => {
   return (
     <View style={styles.loginButtons}>
-        <Pressable 
-            style={styles.button}
-            onPress={() => props.setButtonPressed(true)}
-        >
-            <Text style={styles.buttonText}>Login</Text>
-        </Pressable>
+            <TouchableOpacity 
+                activeOpacity={0.7}
+                style={styles.button}
+                onPress={() => props.setButtonPressed(true)}
+            >
+                <Text style={styles.buttonText}>Login</Text>
+            </TouchableOpacity>
         <Text style={styles.text}>- or -</Text>
-        <Pressable style={styles.button}>
+        <TouchableOpacity
+            activeOpacity={0.7}
+            style={styles.button}
+        >
             <Text style={styles.buttonText}>Create New Account</Text>
-        </Pressable>
+        </TouchableOpacity>
     </View>
   );
 }

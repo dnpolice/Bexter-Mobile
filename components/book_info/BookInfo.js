@@ -1,8 +1,8 @@
-import {StyleSheet, View, Text, Image, Pressable} from 'react-native';
+import {StyleSheet, View, Text, Image, Pressable, TouchableOpacity} from 'react-native';
 import BookInfoText from './BookInfoText';
 
-const BookInfo= ({navigation, story}) => {
-    const {title, author, description, keyLearningOutcomes, coverPhoto: uri} = story;
+const BookInfo= ({navigation, socket, story}) => {
+    const {id, title, author, description, keyLearningOutcomes, coverPhoto: uri} = story;
 
     return (
         <View style={styles.bookInfo}>
@@ -16,9 +16,13 @@ const BookInfo= ({navigation, story}) => {
             <Text style={styles.author}>by {author}</Text>
             <Image source={{ uri: uri }} style={styles.img} />
             <BookInfoText description={description} keyLearningOutcomes={keyLearningOutcomes} />
-            <Pressable style={styles.button}>
+            <TouchableOpacity
+                activeOpacity={0.7}
+                style={styles.button}
+                onPress={() => socket.emit('input', {robotSerialNumber: 33, command: "play", storyId: id})}
+            >
                 <Text style={styles.buttonText}>Play</Text>
-            </Pressable>
+            </TouchableOpacity>
         </View>
     );
 }
@@ -60,6 +64,7 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         textAlign: 'center',
+        color: "white",
         padding: 15,
         fontSize: 20,
     },

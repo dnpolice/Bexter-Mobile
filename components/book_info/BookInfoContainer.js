@@ -1,16 +1,31 @@
 import {StyleSheet, View, Text} from 'react-native';
 import BackgroundOverlay from '../general/BackgroundOverlay';
 import BookInfo from './BookInfo';
+import io from 'socket.io-client';
+import { useEffect } from 'react';
+
+
+// const base_url = "http://3.134.99.13:5000/";
+const base_url = "http://localhost:5000/"
 
 const BookInfoContainer = ({navigation, route}) => {
+    let socket = io(base_url,  { transports: ['websocket', 'polling', 'flashsocket'] });
     const { story } = route.params;
+    
+    connectToRobot(socket);
 
     return (
         <View style={styles.bookInfoContainer}>
             <BackgroundOverlay />
-            <BookInfo story={story} navigation={navigation}/>
+            <BookInfo socket={socket} story={story} navigation={navigation}/>
         </View>
     );
+}
+
+const connectToRobot = (socket) => {
+    useEffect(() => {
+        socket.emit('join', 33);
+    }, [])
 }
 
 

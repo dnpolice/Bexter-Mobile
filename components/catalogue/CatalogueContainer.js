@@ -3,8 +3,8 @@ import React, { useState, useEffect, useMemo } from 'react';
 import BackgroundOverlay from '../general/BackgroundOverlay';
 import Catalogue from './Catalogue';
 
-// const base_url = "http://3.134.99.13:5000/";
-const base_url = "http://localhost:5000/";
+const base_url = "http://3.134.99.13:5000/";
+const cookie = "saveUser=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvbWVlbWFpbEBlbWFpbC5jb20iLCJwYXNzd29yZCI6InNvbWVwYXNzZCIsImlhdCI6MTY3ODMzNzk2MX0.Jo7tWxlIPP3t1O_XhXPZ1ntgL5Wpc4oog-sabH_zNCM"
 const allStoriesUrl = base_url + "stories/all";
 const favouritesUrl = base_url + 'stories/favourites';
 const favouriteUrl = base_url + 'stories/favourite';
@@ -12,10 +12,6 @@ const unfavouriteUrl = base_url + 'stories/unfavourite'
 const previouslyWatchedUrl = base_url + 'stories/previouslyWatched';
 
 const HomeContainer = ({navigation}) => {
-  // const { userName } = route.params;
-  // console.log(userName);
-  // need to persist
-
   const [allStories, setAllStories] = fetchStories();
   const [bookType, setBookType] = useState("All");
 
@@ -68,7 +64,7 @@ const favouriteStoryPost = async (id, favourited) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Cookie': 'saveUser=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvbWVlbWFpbEBlbWFpbC5jb20iLCJwYXNzd29yZCI6InNvbWVwYXNzZCIsImlhdCI6MTY3NjY1NzU3Mn0.Z8caQcxGaMitzea4wgDgnhZasjUq8aRkYgAnZ5ysUP4'
+        'Cookie': cookie
       },
       body: JSON.stringify({
         'storyId': id
@@ -87,14 +83,14 @@ const fetchStories = () => {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Cookie': 'saveUser=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvbWVlbWFpbEBlbWFpbC5jb20iLCJwYXNzd29yZCI6InNvbWVwYXNzZCIsImlhdCI6MTY3NjY1NzU3Mn0.Z8caQcxGaMitzea4wgDgnhZasjUq8aRkYgAnZ5ysUP4'
+            'Cookie': cookie
           }
         }),
         fetch(previouslyWatchedUrl, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Cookie': 'saveUser=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvbWVlbWFpbEBlbWFpbC5jb20iLCJwYXNzd29yZCI6InNvbWVwYXNzZCIsImlhdCI6MTY3NjY1NzU3Mn0.Z8caQcxGaMitzea4wgDgnhZasjUq8aRkYgAnZ5ysUP4'
+            'Cookie': cookie
           }
         })
       ]);
