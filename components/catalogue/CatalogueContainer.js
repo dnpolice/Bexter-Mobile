@@ -122,7 +122,7 @@ const fetchStories = () => {
       console.log(favourites)
       console.log(previouslyWatched)
 
-      setAllStories(allStories);
+      setAllStories(allStories.sort((a, b) => b.id - a.id));
     }
 
     fetchData();
