@@ -4,6 +4,7 @@ import BackgroundOverlay from '../general/BackgroundOverlay';
 import Catalogue from './Catalogue';
 
 const base_url = "http://3.134.99.13:5000/";
+// const base_url = "http://localhost:5000/";
 const cookie = "saveUser=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNvbWVlbWFpbEBlbWFpbC5jb20iLCJwYXNzd29yZCI6InNvbWVwYXNzZCIsImlhdCI6MTY3ODMzNzk2MX0.Jo7tWxlIPP3t1O_XhXPZ1ntgL5Wpc4oog-sabH_zNCM"
 const allStoriesUrl = base_url + "stories/all";
 const favouritesUrl = base_url + 'stories/favourites';
@@ -47,13 +48,14 @@ const HomeContainer = ({navigation}) => {
       <TextInput
             style={styles.input}
             placeholder="Search"
-        />
-        <Catalogue
-          navigation={navigation}
-          stories={filteredStories}
-          setBookType={setBookType}
-          bookType={bookType}
-          setStoryAsFavourite={setStoryAsFavourite}/>
+      />
+      <Catalogue
+        navigation={navigation}
+        stories={filteredStories}
+        setBookType={setBookType}
+        bookType={bookType}
+        setStoryAsFavourite={setStoryAsFavourite}
+      />
     </View>
   );
 }
@@ -64,7 +66,7 @@ const favouriteStoryPost = async (id, favourited) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Cookie': cookie
+        // 'Cookie': cookie
       },
       body: JSON.stringify({
         'storyId': id
@@ -83,14 +85,14 @@ const fetchStories = () => {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Cookie': cookie
+            // 'Cookie': cookie
           }
         }),
         fetch(previouslyWatchedUrl, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Cookie': cookie
+            // 'Cookie': cookie
           }
         })
       ]);
