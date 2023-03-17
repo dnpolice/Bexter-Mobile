@@ -37,7 +37,7 @@ const Login = ({navigation}) => {
           // these need to be persisted 
           // using userEmail just for now
           navigation.navigate('Home', {
-            userName: userEmail
+            userName: "Tim"
           });
         }
         else {
