@@ -30,14 +30,14 @@ const Login = ({navigation}) => {
       } ;
       const loginResponse = login();
       loginResponse.then((response) => {
-        console.log('loginResponse', response);
+        const cookie =  response.headers.map["set-cookie"];
         setIsLoginPressed(false);
         if (response.ok === true) {
           // get cookie and name somehow and pass in to home
           // these need to be persisted 
+          // using userEmail just for now
           navigation.navigate('Home', {
-            // cookie: "some cookie to be passed", 
-            userName: "Bir"
+            userName: userEmail
           });
         }
         else {

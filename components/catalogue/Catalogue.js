@@ -11,7 +11,7 @@ const Catalogue = ({
   userName}) => {
   return (
     <View style={styles.home}>
-      <Text style={styles.text}>Books for Tim</Text>
+      <Text style={styles.text}>Books for {userName}</Text>
       <BookTypeSelection setBookType={setBookType} bookType={bookType}/>
       <Books
         stories={stories}
@@ -20,7 +20,6 @@ const Catalogue = ({
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
     home: {

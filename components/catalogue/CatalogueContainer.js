@@ -2,6 +2,8 @@ import {StyleSheet, View, TextInput} from 'react-native';
 import React, { useState, useEffect, useMemo } from 'react';
 import BackgroundOverlay from '../general/BackgroundOverlay';
 import Catalogue from './Catalogue';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const base_url = "http://3.134.99.13:5000/";
 // const base_url = "http://localhost:5000/";
@@ -12,7 +14,26 @@ const favouriteUrl = base_url + 'stories/favourite';
 const unfavouriteUrl = base_url + 'stories/unfavourite'
 const previouslyWatchedUrl = base_url + 'stories/previouslyWatched';
 
-const HomeContainer = ({navigation}) => {
+const HomeContainer = ({navigation, route}) => {
+  const [name, setName] = useState("");
+
+  const storeUser = async () => {
+    if (route.params){
+      try {
+        let userName = route.params.userName;
+        await AsyncStorage.setItem("@userName", userName);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };  
+  storeUser();
+
+  AsyncStorage.getItem('@userName').then((value) => {
+    setName(value);
+  });
+
+
   const [allStories, setAllStories] = fetchStories();
   const [bookType, setBookType] = useState("All");
 
@@ -55,11 +76,30 @@ const HomeContainer = ({navigation}) => {
         setBookType={setBookType}
         bookType={bookType}
         setStoryAsFavourite={setStoryAsFavourite}
+        userName={name}
       />
     </View>
   );
 }
-
+const getUser = async () => {
+  try {
+    const savedCookie = await AsyncStorage.getItem("cookie");
+    return savedCookie;
+  } catch (error) {
+    console.log(error);
+  }
+};
+  // const favouriteStoryPost = async (id, favourited) => {
+  //   console.log(cookie);
+  //   getUser().then(
+  //     function(value) { 
+  //       let user = value; 
+  //       // console.log('cooo:', user);
+  //       setCookie(user);
+  //     },
+  //   );
+  //   console.log(cookie);
+  //   }
 const favouriteStoryPost = async (id, favourited) => {
   const url = favourited ? unfavouriteUrl : favouriteUrl;
     fetch(url, {
@@ -118,9 +158,9 @@ const fetchStories = () => {
         if (allStories[i].id in previouslyWatchedStories) allStories[i]["previouslyWatched"] = true
       }
 
-      console.log(allStories)
-      console.log(favourites)
-      console.log(previouslyWatched)
+      // console.log(allStories)
+      // console.log(favourites)
+      // console.log(previouslyWatched)
 
       setAllStories(allStories.sort((a, b) => b.id - a.id));
     }
@@ -158,6 +198,15 @@ const styles = StyleSheet.create({
       marginLeft:20, 
       marginRight: 20
     },
+    searchbar:{
+      marginTop: 100,
+      marginLeft:30,
+      marginRight:30,
+      borderRadius:30,
+      marginBottom:0, 
+      paddingBottom:0
+      
+    }
     
 });
 
