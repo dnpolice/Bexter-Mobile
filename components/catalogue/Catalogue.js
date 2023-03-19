@@ -8,11 +8,15 @@ const Catalogue = ({
   setBookType,
   bookType,
   setStoryAsFavourite,
-  userName}) => {
+  userName, 
+  searching}) => {
+
   return (
     <View style={styles.home}>
-      <Text style={styles.text}>Books for {userName}</Text>
-      <BookTypeSelection setBookType={setBookType} bookType={bookType}/>
+      {searching &&
+      <Text style={styles.text}>Books for {userName}</Text>}
+      {searching &&
+        <BookTypeSelection setBookType={setBookType} bookType={bookType}/>}
       <Books
         stories={stories}
         navigation={navigation}
@@ -23,19 +27,15 @@ const Catalogue = ({
 
 const styles = StyleSheet.create({
     home: {
-      height: 765,
+      height: '80%',
       backgroundColor: '#fff',
-      borderTopLeftRadius: 40,
-      borderTopRightRadius: 40,
-      transform: [
-        { translateY: 100 },
-      ],
-      paddingBottom:120
+      borderTopLeftRadius: 50,
+      borderTopRightRadius: 50,
+      paddingTop: 40,
     },
     text: {
       fontSize: 30,
       paddingLeft:20,
-      marginTop: 40,
       marginBottom: 20,
     }
 });

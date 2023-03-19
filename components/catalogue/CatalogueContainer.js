@@ -1,5 +1,5 @@
-import {StyleSheet, View, TextInput} from 'react-native';
-import React, { useState, useEffect, useMemo } from 'react';
+import {StyleSheet, View, TextInput, SafeAreaView, TouchableOpacity, Text, KeyboardAvoidingView} from 'react-native';
+import React, { useState, useEffect } from 'react';
 import BackgroundOverlay from '../general/BackgroundOverlay';
 import Catalogue from './Catalogue';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -16,7 +16,7 @@ const previouslyWatchedUrl = base_url + 'stories/previouslyWatched';
 
 const HomeContainer = ({navigation, route}) => {
   const [name, setName] = useState("");
-
+  const [searchInput, setSearchInput] = useState("");
   const storeUser = async () => {
     if (route.params){
       try {
@@ -52,54 +52,62 @@ const HomeContainer = ({navigation, route}) => {
       });
     });
   }
-  
-  const filteredStories = useMemo(() => {
-    let stories = allStories;
-    if (bookType == "Favourites") {
-      stories = stories.filter(story => story.favourite == true);
-    } else if (bookType == "Previously Watched") {
-      stories = stories.filter(story => story.previouslyWatched == true);
-    }
-    return stories
-}, [allStories, bookType])
+  let searching = true;
+  let filteredStories = allStories;
+  console.log("stories", filteredStories);
+  if (searchInput !== ""){
+    filteredStories = filteredStories.filter(story => {
+      // assuming all keyLearningOutcomes from db are formatted
+      // with first letter capitalized and rest small letters
+      let casedWord = searchInput.charAt(0).toUpperCase() + searchInput.toLowerCase().slice(1);
+      searching = false;
+      return story.keyLearningOutcomes.includes(casedWord) ;
+    });
+  }
+  else if (bookType == "Favourites") {
+    filteredStories = filteredStories.filter(story => story.favourite == true);
+  } else if (bookType == "Previously Watched") {
+    filteredStories = filteredStories.filter(story => story.previouslyWatched == true);
+  }
 
   return (
     <View style={styles.homeContainer}>
       <BackgroundOverlay />
-      <TextInput
-            style={styles.input}
-            placeholder="Search"
-      />
-      <Catalogue
-        navigation={navigation}
-        stories={filteredStories}
-        setBookType={setBookType}
-        bookType={bookType}
-        setStoryAsFavourite={setStoryAsFavourite}
-        userName={name}
-      />
+      <KeyboardAvoidingView enabled={false}>
+        <SafeAreaView style={styles.container}>
+          <View style={styles.searchbar}>
+            <TextInput
+                style={styles.input}
+                placeholder="Search"
+                value={searchInput}
+                onChangeText={(value) => setSearchInput(value)}
+            />
+            {
+              !searching &&
+              <TouchableOpacity
+              style={styles.clearButton}
+              onPress={() => setSearchInput("")}
+              >
+                <Text> Clear </Text>
+              </TouchableOpacity>
+            }
+            
+          </View>
+        </SafeAreaView>
+        <Catalogue
+          navigation={navigation}
+          stories={filteredStories}
+          setBookType={setBookType}
+          bookType={bookType}
+          setStoryAsFavourite={setStoryAsFavourite}
+          userName={name}
+          searching={searching}
+        />
+      </KeyboardAvoidingView>
     </View>
   );
 }
-const getUser = async () => {
-  try {
-    const savedCookie = await AsyncStorage.getItem("cookie");
-    return savedCookie;
-  } catch (error) {
-    console.log(error);
-  }
-};
-  // const favouriteStoryPost = async (id, favourited) => {
-  //   console.log(cookie);
-  //   getUser().then(
-  //     function(value) { 
-  //       let user = value; 
-  //       // console.log('cooo:', user);
-  //       setCookie(user);
-  //     },
-  //   );
-  //   console.log(cookie);
-  //   }
+
 const favouriteStoryPost = async (id, favourited) => {
   const url = favourited ? unfavouriteUrl : favouriteUrl;
     fetch(url, {
@@ -182,30 +190,27 @@ const styles = StyleSheet.create({
         backgroundColor: '#5861B0',
         overflow: 'hidden',
     },
-    text: {
-        fontSize: 30,
+    container: {
+      marginBottom:50,
     },
-    input: {
-      backgroundColor: '#fff',
-      padding: 10,
-      paddingLeft: 20,
-      borderWidth: 1,
-      borderStyle: 'solid',
-      borderColor: '#D9D9D9',
-      borderRadius: 100,
-      top: '10%', 
-      margin: 10,
-      marginLeft:20, 
-      marginRight: 20
+    clearButton:{
+      justifyContent: 'center', 
+      color: '#ff0000'
     },
     searchbar:{
-      marginTop: 100,
-      marginLeft:30,
-      marginRight:30,
-      borderRadius:30,
-      marginBottom:0, 
-      paddingBottom:0
-      
+      backgroundColor: '#fff',
+      padding: 15,
+      paddingLeft: 20,
+      paddingRight: 20,
+      borderRadius: 100,
+      marginTop: 70,
+      marginLeft:20, 
+      marginRight: 20,
+      flexWrap:'wrap',
+      flexDirection: 'row',
+    },
+    input :{
+      width: '85%'
     }
     
 });
