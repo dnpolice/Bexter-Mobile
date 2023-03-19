@@ -21,6 +21,7 @@ const Login = ({navigation,loginUser}) => {
           setPassword={setUserPassword}/>
         <LoginButtons 
           setButtonPressed={setIsLoginPressed}
+          navigation={navigation}
           />
     </View>
   );
@@ -43,6 +44,8 @@ const styles = StyleSheet.create({
         fontSize: 30,
         width: '100%',
         paddingLeft: '10%',
+        paddingTop:30,
+        paddingBottom:30
     }
 });
 

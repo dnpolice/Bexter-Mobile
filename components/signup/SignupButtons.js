@@ -1,6 +1,6 @@
-import { Pressable, StyleSheet, Text, View, Keyboard, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Keyboard, TouchableOpacity } from 'react-native';
 import { useEffect, useState } from 'react';
-const LoginButtons = (props) => {
+const SignupButtons = (props) => {
     const [keyboardIsVisible, setKeyboardIsVisible] = useState(false);
     useEffect(() => {
         const showListener = Keyboard.addListener("keyboardDidShow", () => {
@@ -17,13 +17,13 @@ const LoginButtons = (props) => {
     }, []);
 
   return (
-    <View style={styles.loginButtons}>
+    <View style={styles.signupButtons}>
         <TouchableOpacity 
             activeOpacity={0.7}
             style={styles.button}
-            onPress={() => props.setButtonPressed(true)}
+            onPress={() => props.setButtonPressedd(true)}
         >
-            <Text style={styles.buttonText}>Login</Text>
+            <Text style={styles.buttonText}>Create Account</Text>
         </TouchableOpacity>
         {
             !keyboardIsVisible && 
@@ -34,19 +34,17 @@ const LoginButtons = (props) => {
             <TouchableOpacity
             activeOpacity={0.7}
             style={styles.button}
-            onPress={()=>props.navigation.navigate("Signup")}
+            onPress={()=>props.navigation.navigate("Login")}
             >
-                <Text style={styles.buttonText}>Create New Account</Text>
+                <Text style={styles.buttonText}>Login</Text>
             </TouchableOpacity>
         }
-        
     </View>
   );
 }
 
-
 const styles = StyleSheet.create({
-    loginButtons: {
+    signupButtons: {
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
@@ -72,4 +70,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default LoginButtons
+export default SignupButtons

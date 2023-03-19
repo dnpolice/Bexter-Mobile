@@ -1,4 +1,5 @@
 import LoginContainer from './components/login/LoginContainer';
+import SignupContainer from './components/signup/SignupContainer';
 import CatalogueContainer from './components/catalogue/CatalogueContainer';
 import BookInfoContainer from './components/book_info/BookInfoContainer';
 import {NavigationContainer} from '@react-navigation/native';
@@ -23,6 +24,11 @@ export default function App() {
         <Stack.Screen
           name="BookInfoContainer"
           component={BookInfoContainer}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Signup"
+          component={SignupContainer}
           options={{ headerShown: false }}
         />
 
