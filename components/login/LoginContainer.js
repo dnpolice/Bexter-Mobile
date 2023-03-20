@@ -1,4 +1,4 @@
-import { StyleSheet, View, Alert } from 'react-native';
+import { StyleSheet, View, Alert, KeyboardAvoidingView } from 'react-native';
 import Login from './Login';
 import BackgroundOverlay from '../general/BackgroundOverlay';
 import LogoContainer from '../general/LogoContainer';
@@ -29,8 +29,9 @@ const LoginContainer = ({navigation}) => {
         // get cookie and name somehow and pass in to home
         // these need to be persisted 
         // using userEmail just for now
-        navigation.navigate('Home', {
-          userName: "Tim"
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Home', params: { userName: 'Greyson' } }],
         });
       }
       else {
@@ -51,13 +52,17 @@ const LoginContainer = ({navigation}) => {
    
   }
   return (
-    <View style={styles.loginContainer}>
-        <BackgroundOverlay />
-        <LogoContainer />
-        <Login 
-        navigation={navigation}
-        loginUser={loginUser}/>
-    </View>
+    <KeyboardAvoidingView
+        style={styles.container}
+        behavior="position">
+      <View style={styles.loginContainer}>
+          <BackgroundOverlay />
+          <LogoContainer />
+          <Login 
+          navigation={navigation}
+          loginUser={loginUser}/>
+      </View>
+    </KeyboardAvoidingView>
   );
 }
 

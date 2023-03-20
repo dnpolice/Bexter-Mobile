@@ -16,9 +16,7 @@ const PlayButton = ({id, socket}) => {
 }
 
 const onPress = (socket, id, isPlaying, setIsPlaying) => {
-    console.log(isPlaying)
     if (isPlaying) {
-        console.log("here")
         socket.emit('input', {robotSerialNumber: 33, command: "stop"})
         setIsPlaying(false);
     } else {

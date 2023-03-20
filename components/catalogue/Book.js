@@ -1,4 +1,4 @@
-import {StyleSheet, View, Image, Pressable } from 'react-native';
+import {StyleSheet, View, Image, TouchableOpacity } from 'react-native';
 import BookText from './BookText';
 
 const Book = ({navigation, story, setStoryAsFavourite}) => {
@@ -12,7 +12,11 @@ const Book = ({navigation, story, setStoryAsFavourite}) => {
     } = story;
 
     return (
-        <Pressable onPress={() => navigation.navigate('BookInfoContainer', {story})}> 
+        <TouchableOpacity 
+            activeOpacity={0.7}
+            delayPressIn={75}
+            onPress={() => navigation.navigate('BookInfoContainer', {story})}
+        >
             <View style={styles.book}>
                 <Image source={{ uri: uri }} style={styles.img} />
                 <BookText
@@ -24,8 +28,8 @@ const Book = ({navigation, story, setStoryAsFavourite}) => {
                     favourited={favourited}
                     setStoryAsFavourite={setStoryAsFavourite}/>
             </View>
-        </Pressable>
-  );
+        </TouchableOpacity>
+    );
 }
 
 

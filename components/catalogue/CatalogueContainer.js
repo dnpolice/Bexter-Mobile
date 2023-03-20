@@ -172,10 +172,6 @@ const fetchStories = () => {
         if (allStories[i].id in previouslyWatchedStories) allStories[i]["previouslyWatched"] = true
       }
 
-      // console.log(allStories)
-      // console.log(favourites)
-      // console.log(previouslyWatched)
-
       setAllStories(allStories.sort((a, b) => b.id - a.id));
     }
 

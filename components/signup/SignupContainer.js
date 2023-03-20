@@ -1,4 +1,4 @@
-import { StyleSheet, View, Alert } from 'react-native';
+import { StyleSheet, View, Alert, KeyboardAvoidingView } from 'react-native';
 import Signup from './Signup';
 import BackgroundOverlay from '../general/BackgroundOverlay';
 import LogoContainer from '../general/LogoContainer';
@@ -27,7 +27,6 @@ const SignupContainer = ({navigation}) => {
     const signupResponse = signup();
     signupResponse.then((response) => {
       // const cookie =  response.headers.map["set-cookie"];
-      console.log('response', response);
       if (response.ok === true) {
         // get cookie and name somehow and pass in to home
         // these need to be persisted 
@@ -68,13 +67,16 @@ const SignupContainer = ({navigation}) => {
    
   }
   return (
-    <View style={styles.signupContainer}>
-        <BackgroundOverlay />
-        {/* <LogoContainer /> */}
-        <Signup 
-        navigation={navigation}
-        signupUser={signupUser}/>
-    </View>
+    // <KeyboardAvoidingView
+    //     style={styles.container}
+    //     behavior="position">
+      <View style={styles.signupContainer}>
+          <BackgroundOverlay />
+          <Signup 
+          navigation={navigation}
+          signupUser={signupUser}/>
+      </View>
+    // </KeyboardAvoidingView>
   );
 }
 

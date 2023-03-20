@@ -1,21 +1,5 @@
-import { Pressable, StyleSheet, Text, View, Keyboard, TouchableOpacity } from 'react-native';
-import { useEffect, useState } from 'react';
+import {StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 const LoginButtons = (props) => {
-    const [keyboardIsVisible, setKeyboardIsVisible] = useState(false);
-    useEffect(() => {
-        const showListener = Keyboard.addListener("keyboardDidShow", () => {
-            setKeyboardIsVisible(true)
-        })
-        const hideListener = Keyboard.addListener("keyboardDidHide", () => {
-            setKeyboardIsVisible(false)
-        })
-    
-        return () => {
-            showListener.remove()
-            hideListener.remove()
-        }
-    }, []);
-
   return (
     <View style={styles.loginButtons}>
         <TouchableOpacity 
@@ -25,21 +9,14 @@ const LoginButtons = (props) => {
         >
             <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
-        {
-            !keyboardIsVisible && 
             <Text style={styles.text}>- or -</Text>
-        }
-        {
-            !keyboardIsVisible && 
             <TouchableOpacity
             activeOpacity={0.7}
             style={styles.button}
             onPress={()=>props.navigation.navigate("Signup")}
             >
                 <Text style={styles.buttonText}>Create New Account</Text>
-            </TouchableOpacity>
-        }
-        
+            </TouchableOpacity>        
     </View>
   );
 }
