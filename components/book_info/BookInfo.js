@@ -1,4 +1,4 @@
-import {StyleSheet, View, Text, Image, Pressable} from 'react-native';
+import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
 import BookInfoText from './BookInfoText';
 import PlayButton from './PlayButton';
 
@@ -8,12 +8,13 @@ const BookInfo= ({navigation, socket, story}) => {
 
     return (
         <View style={styles.bookInfo}>
-            <Pressable 
+            <TouchableOpacity 
+                activeOpacity={0.7}
                 style={styles.back}
                 onPress={() => navigation.navigate("Home")}
             >
                 <Text style={styles.text}>Back</Text>
-            </Pressable>
+            </TouchableOpacity>
             <Text style={styles.header}>{title}</Text>
             <Text style={styles.author}>by {author}</Text>
             <Image source={{ uri: uri }} style={styles.img} />
