@@ -9,14 +9,12 @@ const LoginButtons = (props) => {
         >
             <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
-            <Text style={styles.text}>- or -</Text>
-            <TouchableOpacity
-            activeOpacity={0.7}
-            style={styles.button}
-            onPress={()=>props.navigation.navigate("Signup")}
-            >
-                <Text style={styles.buttonText}>Create New Account</Text>
-            </TouchableOpacity>        
+        <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={()=>props.navigation.navigate("Signup")}
+        >
+            <Text style={styles.text}>Create New Account</Text>
+        </TouchableOpacity>        
     </View>
   );
 }
@@ -28,7 +26,9 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'flex-start',
+        height: "25%",
+        // marginBottom: 10,
     },
     button: {
         backgroundColor: '#FF9B83',
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         color: '#A0A0A0',
         textAlign: 'center',
         fontSize: 15,
-        margin:20
+        margin: 20
     }
 });
 

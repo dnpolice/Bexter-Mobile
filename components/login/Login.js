@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     login: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-between',
         alignItems: 'center',
         height: '65%',
         backgroundColor: 'white',
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
         width: '100%',
         paddingLeft: '10%',
         paddingTop:30,
-        paddingBottom:30
+        marginTop: 30,
     }
 });
 

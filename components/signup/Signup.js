@@ -35,9 +35,9 @@ const styles = StyleSheet.create({
     signup: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-evenly',
+        justifyContent: 'space-between',
         alignItems: 'center',
-        height: '90%',
+        height: '80%',
         backgroundColor: 'white',
         borderTopRightRadius: 40,
         borderTopLeftRadius: 40,
@@ -47,7 +47,9 @@ const styles = StyleSheet.create({
         fontSize: 30,
         width: '100%',
         paddingLeft: '10%',
-        paddingTop:30
+        paddingTop:30,
+        marginTop: 40,
+        marginBottom: 10,
     }
 });
 

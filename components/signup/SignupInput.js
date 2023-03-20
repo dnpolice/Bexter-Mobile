@@ -35,14 +35,14 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly',
+        height: "50%"
     },
     input: {
         backgroundColor: '#fff',
-        padding: 10,
+        padding: 15,
         paddingLeft: 20,
         width: '85%',
-        marginBottom:30,
         borderWidth: 1,
         borderStyle: 'solid',
         borderColor: '#D9D9D9',

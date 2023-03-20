@@ -1,7 +1,6 @@
 import { StyleSheet, View, Alert, KeyboardAvoidingView } from 'react-native';
 import Signup from './Signup';
 import BackgroundOverlay from '../general/BackgroundOverlay';
-import LogoContainer from '../general/LogoContainer';
 
 const base_url = "http://3.134.99.13:5000/";
 // const base_url = "http://localhost:5000/";
@@ -67,16 +66,16 @@ const SignupContainer = ({navigation}) => {
    
   }
   return (
-    // <KeyboardAvoidingView
-    //     style={styles.container}
-    //     behavior="position">
+    <KeyboardAvoidingView
+        style={styles.container}
+        behavior="position">
       <View style={styles.signupContainer}>
           <BackgroundOverlay />
           <Signup 
           navigation={navigation}
           signupUser={signupUser}/>
       </View>
-    // </KeyboardAvoidingView>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -89,12 +88,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
     overflow: 'hidden',
-  },
-  logo: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '35%',
   },
   title: {
     fontSize: 40,

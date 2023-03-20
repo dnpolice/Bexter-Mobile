@@ -76,12 +76,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     overflow: 'hidden',
   },
-  logo: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '35%',
-  },
   title: {
     fontSize: 40,
     color: '#FEE0E0'

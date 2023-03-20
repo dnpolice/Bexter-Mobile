@@ -4,12 +4,12 @@ const LoginInput = props => {
   return (
     <View style={styles.loginInput}>
         <TextInput
-            style={styles.input}
-            placeholder="UserEmail@some.com"
+            style={{...styles.input, ...styles.email}}
+            placeholder="Email"
             onChangeText={emailInput => props.setEmail(emailInput)}
         />
         <TextInput
-            style={styles.input}
+            style={{...styles.input, ...styles.password}}
             secureTextEntry={true}
             placeholder="Password"
             onChangeText={passwordInput => props.setPassword(passwordInput)}
@@ -22,7 +22,7 @@ const LoginInput = props => {
 const styles = StyleSheet.create({
     loginInput: {
         width: '100%',
-        // height: '20%',
+        height: '25%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
     },
     input: {
         backgroundColor: '#fff',
-        marginBottom:30,
         padding: 15,
         paddingLeft: 20,
         width: '85%',
@@ -39,6 +38,12 @@ const styles = StyleSheet.create({
         borderColor: '#D9D9D9',
         borderRadius: 100, 
       },
+    email: {
+      // marginBottom:30,
+    },
+    password: {
+      
+    }
 });
 
 export default LoginInput
