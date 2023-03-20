@@ -8,14 +8,16 @@ const Catalogue = ({
   setBookType,
   bookType,
   setStoryAsFavourite,
-  userName, 
-  searching}) => {
+  userName
+}) => {
 
   return (
     <View style={styles.home}>
-      {searching &&
+      {
+      // searching &&
       <Text style={styles.text}>Books for {userName}</Text>}
-      {searching &&
+      {
+      // searching &&
         <BookTypeSelection setBookType={setBookType} bookType={bookType}/>}
       <Books
         stories={stories}

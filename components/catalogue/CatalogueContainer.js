@@ -52,22 +52,29 @@ const HomeContainer = ({navigation, route}) => {
       });
     });
   }
-  let searching = true;
+
   let filteredStories = allStories;
-  console.log("stories", filteredStories);
-  if (searchInput !== ""){
-    filteredStories = filteredStories.filter(story => {
-      // assuming all keyLearningOutcomes from db are formatted
-      // with first letter capitalized and rest small letters
-      let casedWord = searchInput.charAt(0).toUpperCase() + searchInput.toLowerCase().slice(1);
-      searching = false;
-      return story.keyLearningOutcomes.includes(casedWord) ;
-    });
-  }
-  else if (bookType == "Favourites") {
+  if (bookType == "Favourites") {
     filteredStories = filteredStories.filter(story => story.favourite == true);
   } else if (bookType == "Previously Watched") {
     filteredStories = filteredStories.filter(story => story.previouslyWatched == true);
+  }
+
+  if (searchInput !== "") {
+    filteredStories = filteredStories.filter(story => {
+      const keyLearningOutcomes = story.keyLearningOutcomes.map(word => word.toLowerCase()).reduce((s, word) => {
+        return s + " " + word
+      }, "");
+
+      const inputLearningOutcomes =  searchInput.split(",");
+      const inputLearningOutComesInStory = inputLearningOutcomes
+        .map(word => word.trim().toLowerCase())
+        .filter(word => keyLearningOutcomes.includes(word));
+      
+      return inputLearningOutComesInStory.length == inputLearningOutcomes.length
+        || story.title.toLowerCase().includes(searchInput.toLowerCase())
+        || story.author.toLowerCase().includes(searchInput.toLowerCase())
+    });
   }
 
   return (
@@ -83,7 +90,7 @@ const HomeContainer = ({navigation, route}) => {
                 onChangeText={(value) => setSearchInput(value)}
             />
             {
-              !searching &&
+              searchInput !== "" &&
               <TouchableOpacity
               style={styles.clearButton}
               onPress={() => setSearchInput("")}
@@ -101,7 +108,6 @@ const HomeContainer = ({navigation, route}) => {
           bookType={bookType}
           setStoryAsFavourite={setStoryAsFavourite}
           userName={name}
-          searching={searching}
         />
       </KeyboardAvoidingView>
     </View>
