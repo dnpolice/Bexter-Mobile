@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'space-evenly',
-        height: "50%"
+        height: "45%"
     },
     input: {
         backgroundColor: '#fff',

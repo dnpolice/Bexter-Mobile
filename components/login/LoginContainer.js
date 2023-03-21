@@ -1,4 +1,4 @@
-import { StyleSheet, View, Alert, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, View, Alert, KeyboardAvoidingView, ScrollView } from 'react-native';
 import Login from './Login';
 import BackgroundOverlay from '../general/BackgroundOverlay';
 import LogoContainer from '../general/LogoContainer';
@@ -52,16 +52,17 @@ const LoginContainer = ({navigation}) => {
    
   }
   return (
+    
     <KeyboardAvoidingView
         style={styles.container}
         behavior="position">
-      <View style={styles.loginContainer}>
-          <BackgroundOverlay />
-          <LogoContainer />
-          <Login 
-          navigation={navigation}
-          loginUser={loginUser}/>
-      </View>
+        <View style={styles.loginContainer}>
+            <BackgroundOverlay />
+            <LogoContainer />
+            <Login 
+            navigation={navigation}
+            loginUser={loginUser}/>
+        </View>
     </KeyboardAvoidingView>
   );
 }
