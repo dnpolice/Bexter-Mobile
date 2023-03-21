@@ -4,7 +4,7 @@ import BackgroundOverlay from '../general/BackgroundOverlay';
 import Catalogue from './Catalogue';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import SearchIcon from '../general/InputIcons/SearchIcon';
-
+import SideMenu from 'react-native-side-menu-updated';
 
 const base_url = "http://3.134.99.13:5000/";
 // const base_url = "http://localhost:5000/";
@@ -77,8 +77,29 @@ const HomeContainer = ({navigation, route}) => {
         || story.author.toLowerCase().includes(searchInput.toLowerCase())
     });
   }
-
+  
+  const HamburgerMenu =
+    <SideMenu navigator={navigator}>
+      <Text style={styles.hamburgerTop}>  </Text>
+      <TouchableOpacity 
+        onPress={() => navigation.navigate("Home")}>
+        <Text style={styles.hamburgerItems}>About Bexter</Text> 
+      </TouchableOpacity>
+      <TouchableOpacity 
+        onPress={() => navigation.navigate("Home")}>
+        <Text style={styles.hamburgerItems}>About Team Mechateachers</Text> 
+      </TouchableOpacity>
+      <TouchableOpacity 
+        onPress={() => navigation.reset({
+            index: 0,
+            routes: [{ name: 'Login' }],
+          })}>
+        <Text style={styles.hamburgerItemLogout}>Logout</Text> 
+      </TouchableOpacity>
+    </SideMenu>;
+    
   return (
+    <SideMenu menu={HamburgerMenu}>
     <View style={styles.homeContainer}>
       <BackgroundOverlay />
       <KeyboardAvoidingView enabled={false}>
@@ -113,6 +134,7 @@ const HomeContainer = ({navigation, route}) => {
         />
       </KeyboardAvoidingView>
     </View>
+    </SideMenu>
   );
 }
 
@@ -217,6 +239,22 @@ const styles = StyleSheet.create({
       paddingLeft: 10,
       width: '75%'
     },
+    hamburgerTop:{
+      margin: 20,
+      fontSize:30,
+    }, 
+    hamburgerItems:{
+      padding:12,
+      fontSize:20,
+      borderColor:'#b4b4b4',
+      borderBottomWidth:.5, 
+      borderTopWidth:.5
+    }, 
+    hamburgerItemLogout:{
+      padding:12,
+      fontSize:20,
+      backgroundColor:'#d7d7d7'
+    }
     
 });
 
