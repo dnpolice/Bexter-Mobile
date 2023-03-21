@@ -1,7 +1,7 @@
-import {StyleSheet, Text, View } from 'react-native';
+import {StyleSheet, Text, View, Platform, Keyboard } from 'react-native';
 import SignupButtons from './SignupButtons';
 import SignupInput from './SignupInput';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 const Signup = ({navigation,signupUser}) => {
   const [isSignupPressedd, setIsSignupPressedd] = useState(false);
@@ -15,9 +15,24 @@ const Signup = ({navigation,signupUser}) => {
     signupUser(userName, userEmail, userPassword, robotID);
     setIsSignupPressedd(false);
   }
+
+  const [keyboardIsVisible, setKeyboardIsVisible] = useState(false);
+  useEffect(() => {
+      const showListener = Keyboard.addListener("keyboardDidShow", () => {
+          setKeyboardIsVisible(true)
+      })
+      const hideListener = Keyboard.addListener("keyboardDidHide", () => {
+          setKeyboardIsVisible(false)
+      })
+      return () => {
+          showListener.remove()
+          hideListener.remove()
+      }
+  }, []);
+
   return (
-    <View style={styles.signup}>
-        <Text style={styles.header}>Create Account </Text>
+    <View style={styles.signup} height={Platform.OS === 'android' && keyboardIsVisible? '95%': '80%'} >
+        <Text style={Platform.OS === 'ios'? styles.header : styles.headerAndroid} >Create Account </Text>
         <SignupInput 
           setName={setUserName}
           setEmail={setUserEmail} 
@@ -50,7 +65,12 @@ const styles = StyleSheet.create({
         paddingTop:30,
         marginTop: 40,
         marginBottom: 10,
-    }
+    },
+    headerAndroid: {
+      fontSize: 30,
+      width: '100%',
+      paddingLeft: '10%',
+  }
 });
 
 export default Signup

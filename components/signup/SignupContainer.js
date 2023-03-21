@@ -1,4 +1,4 @@
-import { StyleSheet, View, Alert, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, View, Alert, KeyboardAvoidingView, Platform } from 'react-native';
 import Signup from './Signup';
 import BackgroundOverlay from '../general/BackgroundOverlay';
 
@@ -68,7 +68,7 @@ const SignupContainer = ({navigation}) => {
   return (
     <KeyboardAvoidingView
         style={styles.container}
-        behavior="position">
+        behavior={Platform.OS === 'ios' ? "position": "null"}>
       <View style={styles.signupContainer}>
           <BackgroundOverlay />
           <Signup 

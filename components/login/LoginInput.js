@@ -1,10 +1,10 @@
-import { StyleSheet, TextInput, View, Svg } from 'react-native';
+import { StyleSheet, TextInput, View, Platform } from 'react-native';
 import EmailIcon from '../general/InputIcons/EmailIcon';
 import PasswordIcon from '../general/InputIcons/PasswordIcon';
 
 const LoginInput = props => {
   return (
-    <View style={styles.loginInput}>
+    <View style={styles.loginInput} height={Platform.OS === 'ios'? '22.5%':'auto'}>
         <View style={styles.inputContainer}>
           <EmailIcon />
           <TextInput
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#D9D9D9',
         height: 55,
+        margin:10,
         width: "85%",
         borderRadius: 50,
         paddingLeft: 20

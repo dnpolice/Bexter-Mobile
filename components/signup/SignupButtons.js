@@ -1,7 +1,23 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Keyboard, Platform } from 'react-native';
+import { useState, useEffect } from 'react';
 const SignupButtons = (props) => {
+    
+    const [keyboardIsVisible, setKeyboardIsVisible] = useState(false);
+    useEffect(() => {
+        const showListener = Keyboard.addListener("keyboardDidShow", () => {
+            setKeyboardIsVisible(true)
+        })
+        const hideListener = Keyboard.addListener("keyboardDidHide", () => {
+            setKeyboardIsVisible(false)
+        })
+        return () => {
+            showListener.remove()
+            hideListener.remove()
+        }
+    }, []);
+
   return (
-    <View style={styles.signupButtons}>
+    <View style={styles.signupButtons} height={Platform.OS === 'ios' ? '20%' : 'auto'}>
         <TouchableOpacity 
             activeOpacity={0.7}
             style={styles.button}
@@ -9,14 +25,20 @@ const SignupButtons = (props) => {
         >
             <Text style={styles.buttonText}>Create Account</Text>
         </TouchableOpacity>
-            
-            <TouchableOpacity
-            activeOpacity={0.7}
-            // style={styles.button}
-            onPress={()=>props.navigation.navigate("Login")}
-            >
-               <Text style={styles.text}>Login</Text>
-            </TouchableOpacity>
+            {
+                Platform.OS === 'android'? !keyboardIsVisible && <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={()=>props.navigation.navigate("Login")}
+                >
+                   <Text style={styles.text}>Login</Text>
+                </TouchableOpacity> :
+                <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={()=>props.navigation.navigate("Login")}
+                >
+                   <Text style={styles.text}>Login</Text>
+                </TouchableOpacity>
+            }
     </View>
   );
 }
@@ -38,7 +60,7 @@ const styles = StyleSheet.create({
     buttonText: {
         color: '#fff',
         textAlign: 'center',
-        padding: 22,
+        padding: 20,
         fontSize: 20,
     },
     text: {

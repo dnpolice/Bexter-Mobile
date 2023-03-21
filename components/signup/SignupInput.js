@@ -65,7 +65,8 @@ const styles = StyleSheet.create({
         height: 55,
         width: "85%",
         borderRadius: 50,
-        paddingLeft: 20
+        paddingLeft: 20,
+        margin:15
       },
     input: {
       flex: 1,

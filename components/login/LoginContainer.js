@@ -1,13 +1,27 @@
-import { StyleSheet, View, Alert, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { StyleSheet, View, Alert, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
 import Login from './Login';
 import BackgroundOverlay from '../general/BackgroundOverlay';
 import LogoContainer from '../general/LogoContainer';
+import { useState, useEffect } from 'react';
 
 const base_url = "http://3.134.99.13:5000/";
 // const base_url = "http://localhost:5000/";
 const loginUrl = base_url + 'auth/login';
 
 const LoginContainer = ({navigation}) => {
+  const [keyboardIsVisible, setKeyboardIsVisible] = useState(false);
+  useEffect(() => {
+      const showListener = Keyboard.addListener("keyboardDidShow", () => {
+          setKeyboardIsVisible(true)
+      })
+      const hideListener = Keyboard.addListener("keyboardDidHide", () => {
+          setKeyboardIsVisible(false)
+      })
+      return () => {
+          showListener.remove()
+          hideListener.remove()
+      }
+  }, []);
   const loginUser = async (userEmail, userPassword) => {
     const login = () => {
       return fetch(loginUrl, {
@@ -52,13 +66,14 @@ const LoginContainer = ({navigation}) => {
    
   }
   return (
-    
     <KeyboardAvoidingView
         style={styles.container}
-        behavior="position">
+        behavior={Platform.OS === 'ios' ? "position": "null"}>
         <View style={styles.loginContainer}>
             <BackgroundOverlay />
-            <LogoContainer />
+            {
+              Platform.OS === 'android'? !keyboardIsVisible && <LogoContainer />:<LogoContainer />
+            }
             <Login 
             navigation={navigation}
             loginUser={loginUser}/>
