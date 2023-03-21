@@ -7,9 +7,9 @@ const BookText = ({id, title, author, keyLearningOutcomes, favourited, setStoryA
         return `${t}, ${c}`;
       }, "");
 
-    let favouritedFill = "none";
+    let favouritedFill = "#D7D7D7";
     if (favourited) {
-        favouritedFill = "#FFEBD2";
+        favouritedFill = "#FF9B83";
     }
     return (
         <View style={styles.bookText}>
