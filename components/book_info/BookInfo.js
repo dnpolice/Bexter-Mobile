@@ -1,6 +1,7 @@
 import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
 import BookInfoText from './BookInfoText';
 import PlayButton from './PlayButton';
+import BackIcon from '../general/InputIcons/BackIcon';
 
 
 const BookInfo= ({navigation, socket, story}) => {
@@ -13,7 +14,7 @@ const BookInfo= ({navigation, socket, story}) => {
                 style={styles.back}
                 onPress={() => navigation.navigate("Home")}
             >
-                <Text style={styles.text}>Back</Text>
+                <BackIcon />
             </TouchableOpacity>
             <Text style={styles.header}>{title}</Text>
             <Text style={styles.author}>by {author}</Text>

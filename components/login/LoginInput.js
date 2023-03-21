@@ -1,19 +1,27 @@
-import { StyleSheet, TextInput, View } from 'react-native';
+import { StyleSheet, TextInput, View, Svg } from 'react-native';
+import EmailIcon from '../general/InputIcons/EmailIcon';
+import PasswordIcon from '../general/InputIcons/PasswordIcon';
 
 const LoginInput = props => {
   return (
     <View style={styles.loginInput}>
-        <TextInput
-            style={{...styles.input, ...styles.email}}
+        <View style={styles.inputContainer}>
+          <EmailIcon />
+          <TextInput
+            style={styles.input}
             placeholder="Email"
             onChangeText={emailInput => props.setEmail(emailInput)}
-        />
-        <TextInput
-            style={{...styles.input, ...styles.password}}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <PasswordIcon />
+          <TextInput
+            style={styles.input}
             secureTextEntry={true}
             placeholder="Password"
             onChangeText={passwordInput => props.setPassword(passwordInput)}
-        />
+          />
+        </View>
     </View>
   );
 }
@@ -22,27 +30,29 @@ const LoginInput = props => {
 const styles = StyleSheet.create({
     loginInput: {
         width: '100%',
-        height: '25%',
+        height: '22.5%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'space-between',
+        marginTop: 20,
+        marginBottom: 20
     },
-    input: {
+    inputContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
         backgroundColor: '#fff',
-        padding: 15,
-        paddingLeft: 20,
-        width: '85%',
         borderWidth: 1,
-        borderStyle: 'solid',
         borderColor: '#D9D9D9',
-        borderRadius: 100, 
+        height: 55,
+        width: "85%",
+        borderRadius: 50,
+        paddingLeft: 20
       },
-    email: {
-      // marginBottom:30,
-    },
-    password: {
-      
+    input: {
+      flex: 1,
+      paddingLeft: 10,
     }
 });
 

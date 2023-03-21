@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     signup: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly',
         alignItems: 'center',
         height: '80%',
         backgroundColor: 'white',

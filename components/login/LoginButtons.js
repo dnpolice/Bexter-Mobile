@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
         height: "25%",
-        // marginBottom: 10,
+        paddingVertical: 20
     },
     button: {
         backgroundColor: '#FF9B83',
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     buttonText: {
         color: '#fff',
         textAlign: 'center',
-        padding: 15,
+        padding: 22,
         fontSize: 20,
     },
     text: {

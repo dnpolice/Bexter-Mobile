@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import BackgroundOverlay from '../general/BackgroundOverlay';
 import Catalogue from './Catalogue';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import SearchIcon from '../general/InputIcons/SearchIcon';
 
 
 const base_url = "http://3.134.99.13:5000/";
@@ -83,6 +84,7 @@ const HomeContainer = ({navigation, route}) => {
       <KeyboardAvoidingView enabled={false}>
         <SafeAreaView style={styles.container}>
           <View style={styles.searchbar}>
+            <SearchIcon />
             <TextInput
                 style={styles.input}
                 placeholder="Search"
@@ -211,9 +213,10 @@ const styles = StyleSheet.create({
       flexWrap:'wrap',
       flexDirection: 'row',
     },
-    input :{
-      width: '85%'
-    }
+    input: {
+      paddingLeft: 10,
+      width: '75%'
+    },
     
 });
 
