@@ -36,19 +36,16 @@ const LoginContainer = ({navigation}) => {
         
       })
     } ;
-    const loginResponse = login();
-    loginResponse.then((response) => {
-      const cookie =  response.headers.map["set-cookie"];
-      if (response.ok === true) {
-        // get cookie and name somehow and pass in to home
-        // these need to be persisted 
-        // using userEmail just for now
+
+    try {
+      const loginResponse = await login();
+      if (loginResponse.status == 200){
+        const responseJson = await loginResponse.json();
         navigation.reset({
           index: 0,
-          routes: [{ name: 'Home', params: { userName: 'Greyson' } }],
+          routes: [{ name: 'Home', params: { userName: responseJson.name } }],
         });
-      }
-      else {
+      } else {
         Alert.alert('Login Error', 'Login credentials invalid', [
           {
             text: 'OK',
@@ -56,14 +53,13 @@ const LoginContainer = ({navigation}) => {
         ]);
         // then maybe clear the input fields
       }
-    }).catch(e => {
+    } catch(e){
       Alert.alert('Login Error', 'Server error', [
         {
           text: 'OK',
         }
       ]);
-    });
-   
+    }
   }
   return (
     <KeyboardAvoidingView

@@ -101,7 +101,6 @@ const HomeContainer = ({navigation, route}) => {
         }
       ]);
     });
-   
   }
   const HamburgerMenu =
     <SideMenu navigator={navigator}>

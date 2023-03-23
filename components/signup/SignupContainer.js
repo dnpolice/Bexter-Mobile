@@ -31,7 +31,7 @@ const SignupContainer = ({navigation}) => {
         // these need to be persisted 
         // using userEmail just for now
         navigation.navigate('Home', {
-          userName: userEmail
+          userName: userName
         });
       }
       else if (response.status === 400){
