@@ -14,6 +14,7 @@ const favouritesUrl = base_url + 'stories/favourites';
 const favouriteUrl = base_url + 'stories/favourite';
 const unfavouriteUrl = base_url + 'stories/unfavourite'
 const previouslyWatchedUrl = base_url + 'stories/previouslyWatched';
+const logoutUrl = base_url + 'auth/logout';
 
 const HomeContainer = ({navigation, route}) => {
   const [name, setName] = useState("");
@@ -77,7 +78,31 @@ const HomeContainer = ({navigation, route}) => {
         || story.author.toLowerCase().includes(searchInput.toLowerCase())
     });
   }
-  
+
+  const logout = async () => {
+    const logoutReq = () => {
+      return fetch(logoutUrl, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        }        
+      })
+    } ;
+    const logoutResponse = logoutReq();
+    logoutResponse.then((response) => {
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'Login' }],
+      });
+    }).catch(e => {
+      Alert.alert('Logout Error', 'Server error', [
+        {
+          text: 'OK',
+        }
+      ]);
+    });
+   
+  }
   const HamburgerMenu =
     <SideMenu navigator={navigator}>
       <Text style={styles.hamburgerTop}>  </Text>
@@ -85,15 +110,8 @@ const HomeContainer = ({navigation, route}) => {
         onPress={() => navigation.navigate("About")}>
         <Text style={styles.hamburgerItems}>About Bexter</Text> 
       </TouchableOpacity>
-      {/* <TouchableOpacity 
-        onPress={() => navigation.navigate("Home")}>
-        <Text style={styles.hamburgerItems}>About Team Mechateachers</Text> 
-      </TouchableOpacity> */}
       <TouchableOpacity 
-        onPress={() => navigation.reset({
-            index: 0,
-            routes: [{ name: 'Login' }],
-          })}>
+        onPress={() => logout()}>
         <Text style={styles.hamburgerItemLogout}>Logout</Text> 
       </TouchableOpacity>
     </SideMenu>;
