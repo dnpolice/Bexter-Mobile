@@ -82,13 +82,13 @@ const HomeContainer = ({navigation, route}) => {
     <SideMenu navigator={navigator}>
       <Text style={styles.hamburgerTop}>  </Text>
       <TouchableOpacity 
-        onPress={() => navigation.navigate("Home")}>
+        onPress={() => navigation.navigate("About")}>
         <Text style={styles.hamburgerItems}>About Bexter</Text> 
       </TouchableOpacity>
-      <TouchableOpacity 
+      {/* <TouchableOpacity 
         onPress={() => navigation.navigate("Home")}>
         <Text style={styles.hamburgerItems}>About Team Mechateachers</Text> 
-      </TouchableOpacity>
+      </TouchableOpacity> */}
       <TouchableOpacity 
         onPress={() => navigation.reset({
             index: 0,
@@ -99,7 +99,7 @@ const HomeContainer = ({navigation, route}) => {
     </SideMenu>;
     
   return (
-    <SideMenu menu={HamburgerMenu}>
+    <SideMenu menu={HamburgerMenu} >
     <View style={styles.homeContainer}>
       <BackgroundOverlay />
       <KeyboardAvoidingView enabled={false}>
