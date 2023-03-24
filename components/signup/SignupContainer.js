@@ -30,8 +30,9 @@ const SignupContainer = ({navigation}) => {
         // get cookie and name somehow and pass in to home
         // these need to be persisted 
         // using userEmail just for now
-        navigation.navigate('Home', {
-          userName: userName
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'Home', params: { userName: userName } }],
         });
       }
       else if (response.status === 400){
