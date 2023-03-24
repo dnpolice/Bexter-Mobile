@@ -44,8 +44,21 @@ const styles = StyleSheet.create({
         padding: 20
     },
     img: {
-        width: 175,
-        height: 175,
+        ...Platform.select({
+            ios: {
+                width: 175,
+                height: 175,
+            },
+            android: {
+                width: 160,
+                height: 160,
+            },
+            default: {
+                width: 175,
+                height: 175,
+            },
+          }),
+        
         borderRadius: 20
     }
 });

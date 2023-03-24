@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, Pressable} from 'react-native';
+import {StyleSheet, Text, View, Pressable, Platform} from 'react-native';
 
 const BookTypeSelection = ({bookType, setBookType}) => {
     return (
@@ -36,11 +36,31 @@ const styles = StyleSheet.create({
     button: {
         backgroundColor: '#FFEBD2',
         paddingVertical: 5,
-        paddingHorizontal: 20,
+        ...Platform.select({
+            ios: {
+                paddingHorizontal: 20,
+            },
+            android: {
+                paddingHorizontal: 15,
+            },
+            default: {
+              paddingHorizontal: 20,
+            },
+          }),
         borderRadius: 15
     },
     text: {
-        fontSize: 16,
+        ...Platform.select({
+            ios: {
+                fontSize: 16,
+            },
+            android: {
+                fontSize: 15,
+            },
+            default: {
+              fontSize: 16,
+            },
+          }),
     },
     selectedButton: {
         backgroundColor: '#FF9B83'
